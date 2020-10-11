@@ -1,0 +1,18 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 1.25em;
+  width: 250px;
+}
+
+.card__img {
+  width: 100%;
+  height: auto;
+}
+.card__title {
+  font-size: 1.2rem;
+}
+
+.card__rating {
+  font-size: 1.1rem;
+}

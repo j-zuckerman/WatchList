@@ -1,0 +1,222 @@
+import React, { createContext, useState, useEffect } from 'react';
+const apiKey = '9f39dd9c4f8c9231614049d653d261d6';
+const baseUrl = 'https://api.themoviedb.org/3/';
+
+export const MovieContext = createContext();
+
+const MovieProvider = ({ children }) => {
+  const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [genreList, setGenreList] = useState([]);
+
+  const [movieDetails, setMovieDetails] = useState([]);
+  const [movieCast, setMovieCast] = useState([]);
+  const [movieTrailer, setMovieTrailer] = useState([]);
+
+  const [castMemberDetails, setCastMemberDetails] = useState([]);
+  const [castMemberAppearances, setCastMemberAppearances] = useState([]);
+
+  //   const [favorites, setFavorites] = useState([]);
+  //   const [watchList, setWatchList] = useState([]);
+
+  const [isLoaded, setLoaded] = useState(false);
+
+  async function fetchNowPlaying() {
+    const response = await fetch(
+      baseUrl + `movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
+    );
+    const data = await response.json();
+
+    console.log(data);
+    setDataToDisplay(data.results);
+  }
+
+  async function fetchMostPopular() {
+    const response = await fetch(
+      baseUrl + `movie/popular?api_key=${apiKey}&language=en-US&page=1`
+    );
+
+    const data = await response.json();
+    setDataToDisplay(data.results);
+  }
+
+  async function fetchTopRated() {
+    const response = await fetch(
+      baseUrl + `movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
+    );
+
+    const data = await response.json();
+    setDataToDisplay(data.results);
+  }
+
+  async function fetchHomePageData() {
+    fetchNowPlaying();
+  }
+
+  async function fetchSimilarMovies(id) {
+    const response = await fetch(
+      baseUrl + `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
+    );
+
+    const data = await response.json();
+    setDataToDisplay(data.results);
+  }
+
+  async function fetchMovieDetails(id) {
+    const response = await fetch(
+      baseUrl + `movie/${id}?api_key=${apiKey}&language=en-US&page=1`
+    );
+
+    const data = await response.json();
+    setDataToDisplay(data);
+  }
+
+  async function fetchMovieCast(id) {
+    const response = await fetch(
+      baseUrl + `movie/${id}/credits?api_key=${apiKey}`
+    );
+
+    const data = await response.json();
+    setMovieCast(data);
+  }
+
+  async function fetchMovieTrailer(id) {
+    const response = await fetch(
+      baseUrl + `movie/${id}/videos?api_key=${apiKey}&language=en-US`
+    );
+
+    const data = await response.json();
+    setMovieTrailer(data);
+  }
+
+  async function fetchDetailsPageData(id) {
+    setLoaded(false);
+
+    fetchSimilarMovies(id);
+    fetchMovieDetails(id);
+    fetchMovieCast(id);
+    fetchMovieTrailer(id);
+
+    setLoaded(true);
+  }
+
+  async function fetchCastMemberDetails(id) {
+    const response = await fetch(baseUrl + `person/${id}?api_key=${apiKey}`);
+
+    const data = await response.json();
+    setCastMemberDetails(data);
+  }
+
+  async function fetchCastMemberAppearances(id) {
+    const response = await fetch(
+      baseUrl + `person/${id}/movie_credits?api_key=${apiKey}`
+    );
+
+    const data = await response.json();
+
+    setCastMemberAppearances(data);
+  }
+
+  async function fetchCastMemberPageData(id) {
+    setLoaded(false);
+
+    fetchCastMemberAppearances(id);
+    fetchCastMemberDetails(id);
+
+    setLoaded(true);
+  }
+
+  async function fetchMoviesByGenre(id) {
+    setLoaded(false);
+    const response = await fetch(
+      baseUrl +
+        `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`
+    );
+
+    const data = await response.json();
+    //setMoviesByGenre(data);
+    setLoaded(true);
+  }
+
+  async function fetchSearchResults(searchValue) {
+    if (searchValue.length > 1) {
+      setLoaded(false);
+      const response = await fetch(
+        baseUrl + `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
+      );
+
+      const data = await response.json();
+      setSearchResults(data.results);
+      setLoaded(true);
+    }
+  }
+
+  async function fetchGenreList() {
+    setLoaded(false);
+    const response = await fetch(
+      baseUrl + `genre/movie/list?api_key=${apiKey}&language=en-US`
+    );
+
+    const data = await response.json();
+    setGenreList(data);
+    setLoaded(true);
+  }
+
+  //   async function fetchFavorites(listOfIds) {
+  //     setLoaded(false);
+
+  //     let responses = [];
+  //     Promise.all(
+  //       listOfIds.map((id) =>
+  //         movieApi.get(`movie/${id}?api_key=${apiKey}&language=en-US&page=1`)
+  //       )
+  //     ).then((resolvedValues) => {
+  //       resolvedValues.forEach((value) => {
+  //         responses.push(value.data);
+  //       });
+  //     });
+  //     setFavorites(responses);
+
+  //     setLoaded(true);
+  //   }
+
+  //   async function fetchWatchList(listOfIds) {
+  //     setLoaded(false);
+
+  //     let responses = [];
+  //     Promise.all(
+  //       listOfIds.map((id) =>
+  //         movieApi.get(`movie/${id}?api_key=${apiKey}&language=en-US&page=1`)
+  //       )
+  //     ).then((resolvedValues) => {
+  //       resolvedValues.forEach((value) => {
+  //         responses.push(value.data);
+  //       });
+  //     });
+
+  //     console.log(responses);
+  //     setWatchList(responses);
+
+  //     setLoaded(true);
+  //   }
+
+  useEffect(() => {
+    fetchHomePageData();
+  }, []);
+
+  return (
+    <MovieContext.Provider
+      value={{
+        dataToDisplay,
+        fetchNowPlaying,
+        fetchMostPopular,
+        fetchTopRated,
+      }}
+    >
+      {children}
+    </MovieContext.Provider>
+  );
+};
+
+export default MovieProvider;

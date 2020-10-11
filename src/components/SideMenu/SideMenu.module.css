@@ -1,0 +1,31 @@
+.sideMenu {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+
+  width: 250px;
+  background-color: #151514;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+}
+
+.sideMenu:first-child {
+  padding-top: 2em;
+}
+
+.sideMenu__item {
+  cursor: pointer;
+  padding: 1em;
+  color: #afb8c0;
+}
+
+.sideMenu__item:hover {
+  background-color: #1f1f1e;
+  color: #bc4749;
+}
+
+.active {
+  background-color: #1f1f1e;
+  color: #bc4749;
+}

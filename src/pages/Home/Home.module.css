@@ -1,0 +1,13 @@
+.home {
+  margin-left: 200px;
+}
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
