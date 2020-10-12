@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { MovieContext } from '../../context/movies';
 import styles from './SideMenu.module.css';
+import { Link } from 'react-router-dom';
 
 export const SideMenu = () => {
   const { fetchNowPlaying, fetchMostPopular, fetchTopRated } = useContext(
@@ -34,7 +35,9 @@ export const SideMenu = () => {
           }`}
           onClick={switchToTopRated}
         >
-          Top Rated
+          <Link className="link" to="/">
+            Top Rated
+          </Link>
         </li>
         <li
           className={`${styles.sideMenu__item} ${
@@ -42,7 +45,9 @@ export const SideMenu = () => {
           }`}
           onClick={switchToMostPopular}
         >
-          Most Popular
+          <Link className="link" to="/">
+            Most Popular
+          </Link>
         </li>
         <li
           className={`${styles.sideMenu__item} ${
@@ -50,7 +55,9 @@ export const SideMenu = () => {
           }`}
           onClick={switchToNowPlaying}
         >
-          Now Playing
+          <Link className="link" to="/">
+            Now Playing
+          </Link>
         </li>
         <li className={styles.sideMenu__item}></li>
         <li className={styles.sideMenu__item}></li>

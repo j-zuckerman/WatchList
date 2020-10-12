@@ -69,7 +69,8 @@ const MovieProvider = ({ children }) => {
     );
 
     const data = await response.json();
-    setDataToDisplay(data);
+    console.log(data);
+    setMovieDetails(data);
   }
 
   async function fetchMovieCast(id) {
@@ -212,6 +213,8 @@ const MovieProvider = ({ children }) => {
         fetchNowPlaying,
         fetchMostPopular,
         fetchTopRated,
+        fetchMovieDetails,
+        movieDetails,
       }}
     >
       {children}
