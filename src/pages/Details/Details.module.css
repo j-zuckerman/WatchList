@@ -1,0 +1,30 @@
+.details {
+  margin-left: 250px;
+  padding: 1em;
+}
+
+.poster {
+  border-radius: 1rem;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+
+  display: flex;
+}
+
+.description {
+  padding: 1.5em;
+  max-width: 750px;
+}
+
+.description h3 {
+  font-size: 2rem;
+
+  margin: 2rem 0 1rem 0;
+}
+
+.description p {
+  font-size: 1.2rem;
+}

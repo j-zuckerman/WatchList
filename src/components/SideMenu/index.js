@@ -4,25 +4,27 @@ import styles from './SideMenu.module.css';
 import { Link } from 'react-router-dom';
 
 export const SideMenu = () => {
-  const { fetchNowPlaying, fetchMostPopular, fetchTopRated } = useContext(
-    MovieContext
-  );
+  const {
+    switchToMostPopular,
+    switchToNowPlaying,
+    switchToTopRated,
+  } = useContext(MovieContext);
 
   //used to keep track of what link is active
-  const [activeKey, setActiveKey] = useState('top_rated');
+  const [activeKey, setActiveKey] = useState('now_playing');
 
-  const switchToTopRated = () => {
-    fetchTopRated();
+  const navigateToTopRated = () => {
+    switchToTopRated();
     setActiveKey('top_rated');
   };
 
-  const switchToMostPopular = () => {
-    fetchMostPopular();
+  const navigateToMostPopular = () => {
+    switchToMostPopular();
     setActiveKey('most_popular');
   };
 
-  const switchToNowPlaying = () => {
-    fetchNowPlaying();
+  const navigateToNowPlaying = () => {
+    switchToNowPlaying();
     setActiveKey('now_playing');
   };
 
@@ -31,9 +33,19 @@ export const SideMenu = () => {
       <ul className={styles.sideMenu}>
         <li
           className={`${styles.sideMenu__item} ${
+            activeKey === 'now_playing' ? styles.active : ''
+          }`}
+          onClick={navigateToNowPlaying}
+        >
+          <Link className="link" to="/">
+            Now Playing
+          </Link>
+        </li>
+        <li
+          className={`${styles.sideMenu__item} ${
             activeKey === 'top_rated' ? styles.active : ''
           }`}
-          onClick={switchToTopRated}
+          onClick={navigateToTopRated}
         >
           <Link className="link" to="/">
             Top Rated
@@ -43,22 +55,13 @@ export const SideMenu = () => {
           className={`${styles.sideMenu__item} ${
             activeKey === 'most_popular' ? styles.active : ''
           }`}
-          onClick={switchToMostPopular}
+          onClick={navigateToMostPopular}
         >
           <Link className="link" to="/">
             Most Popular
           </Link>
         </li>
-        <li
-          className={`${styles.sideMenu__item} ${
-            activeKey === 'now_playing' ? styles.active : ''
-          }`}
-          onClick={switchToNowPlaying}
-        >
-          <Link className="link" to="/">
-            Now Playing
-          </Link>
-        </li>
+
         <li className={styles.sideMenu__item}></li>
         <li className={styles.sideMenu__item}></li>
       </ul>
