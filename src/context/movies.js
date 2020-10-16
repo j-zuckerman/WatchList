@@ -73,6 +73,7 @@ const MovieProvider = ({ children }) => {
   function switchToTopRated() {
     setDataToDisplay(topRated);
   }
+
   async function fetchSimilarMovies(id) {
     const response = await fetch(
       baseUrl + `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
@@ -98,7 +99,9 @@ const MovieProvider = ({ children }) => {
     );
 
     const data = await response.json();
-    setMovieCast(data);
+    console.log(data);
+
+    setMovieCast(data.cast);
   }
 
   async function fetchMovieTrailer(id) {
@@ -234,6 +237,8 @@ const MovieProvider = ({ children }) => {
         switchToTopRated,
         fetchMovieDetails,
         movieDetails,
+        fetchMovieCast,
+        movieCast,
       }}
     >
       {children}

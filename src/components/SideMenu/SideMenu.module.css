@@ -2,12 +2,12 @@
   list-style-type: none;
   display: flex;
   flex-direction: column;
-
   width: 250px;
   background-color: #151514;
   position: fixed;
   top: 0;
   height: 100vh;
+  margin-top: 60px;
 }
 
 .sideMenu:first-child {
