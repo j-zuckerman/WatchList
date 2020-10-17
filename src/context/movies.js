@@ -163,14 +163,13 @@ const MovieProvider = ({ children }) => {
 
   async function fetchSearchResults(searchValue) {
     if (searchValue.length > 1) {
-      setLoaded(false);
       const response = await fetch(
         baseUrl + `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
       );
 
       const data = await response.json();
-      setSearchResults(data.results);
-      setLoaded(true);
+      console.log(data);
+      setDataToDisplay(data.results);
     }
   }
 
@@ -238,6 +237,7 @@ const MovieProvider = ({ children }) => {
         movieCast,
         similarMovies,
         fetchDetailsPageData,
+        fetchSearchResults,
       }}
     >
       {children}

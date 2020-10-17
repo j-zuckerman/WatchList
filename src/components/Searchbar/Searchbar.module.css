@@ -1,13 +1,24 @@
 .container {
   display: flex;
-  flex-direction: column;
+
   padding: 1em;
 }
 
 .searchbar {
   background: '#F2F1F9';
   border: none;
-  padding: 0.5rem;
+  padding: 0.25rem;
   border-radius: 1rem;
   font-size: 1rem;
+  outline: none;
+}
+
+.submit_btn {
+  background-color: transparent;
+  color: white;
+  padding: 0.75em;
+  margin-left: 0.5rem;
+  border: 1px solid white;
+  border-radius: 50%;
+  outline: none;
 }
