@@ -7,11 +7,16 @@ export const MovieContext = createContext();
 const MovieProvider = ({ children }) => {
   const [dataToDisplay, setDataToDisplay] = useState([]);
 
+  const [topRated, setTopRated] = useState([]);
+  const [mostPopular, setMostPopular] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState([]);
+
   const [searchResults, setSearchResults] = useState([]);
   const [genreList, setGenreList] = useState([]);
 
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
   const [movieTrailer, setMovieTrailer] = useState([]);
 
   const [castMemberDetails, setCastMemberDetails] = useState([]);
@@ -29,6 +34,8 @@ const MovieProvider = ({ children }) => {
     const data = await response.json();
 
     console.log(data);
+
+    setNowPlaying(data.results);
     setDataToDisplay(data.results);
   }
 
@@ -38,7 +45,7 @@ const MovieProvider = ({ children }) => {
     );
 
     const data = await response.json();
-    setDataToDisplay(data.results);
+    setMostPopular(data.results);
   }
 
   async function fetchTopRated() {
@@ -47,20 +54,25 @@ const MovieProvider = ({ children }) => {
     );
 
     const data = await response.json();
-    setDataToDisplay(data.results);
+    setTopRated(data.results);
   }
 
   async function fetchHomePageData() {
-    fetchNowPlaying();
+    await fetchNowPlaying();
+    await fetchTopRated();
+    await fetchMostPopular();
   }
 
-  async function fetchSimilarMovies(id) {
-    const response = await fetch(
-      baseUrl + `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
-    );
+  function switchToNowPlaying() {
+    setDataToDisplay(nowPlaying);
+  }
 
-    const data = await response.json();
-    setDataToDisplay(data.results);
+  function switchToMostPopular() {
+    setDataToDisplay(mostPopular);
+  }
+
+  function switchToTopRated() {
+    setDataToDisplay(topRated);
   }
 
   async function fetchMovieDetails(id) {
@@ -79,7 +91,20 @@ const MovieProvider = ({ children }) => {
     );
 
     const data = await response.json();
-    setMovieCast(data);
+    console.log(data);
+
+    setMovieCast(data.cast);
+  }
+
+  async function fetchSimilarMovies(id) {
+    const response = await fetch(
+      baseUrl + `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
+    );
+
+    const data = await response.json();
+
+    console.log(data);
+    setSimilarMovies(data.results);
   }
 
   async function fetchMovieTrailer(id) {
@@ -92,14 +117,10 @@ const MovieProvider = ({ children }) => {
   }
 
   async function fetchDetailsPageData(id) {
-    setLoaded(false);
-
     fetchSimilarMovies(id);
     fetchMovieDetails(id);
     fetchMovieCast(id);
     fetchMovieTrailer(id);
-
-    setLoaded(true);
   }
 
   async function fetchCastMemberDetails(id) {
@@ -210,11 +231,13 @@ const MovieProvider = ({ children }) => {
     <MovieContext.Provider
       value={{
         dataToDisplay,
-        fetchNowPlaying,
-        fetchMostPopular,
-        fetchTopRated,
-        fetchMovieDetails,
+        switchToMostPopular,
+        switchToNowPlaying,
+        switchToTopRated,
         movieDetails,
+        movieCast,
+        similarMovies,
+        fetchDetailsPageData,
       }}
     >
       {children}
