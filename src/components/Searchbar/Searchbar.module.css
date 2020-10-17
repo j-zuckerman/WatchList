@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.searchbar {
+  background: '#F2F1F9';
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}

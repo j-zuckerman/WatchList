@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './Searchbar.module.css';
 
 export const SearchBar = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -8,9 +9,14 @@ export const SearchBar = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="search">Search for movie</label>
-      <input type="text" value={searchValue} onChange={handleChange} />
+    <div className={styles.container}>
+      <input
+        className={styles.searchbar}
+        type="text"
+        value={searchValue}
+        placeholder="Search for movie"
+        onChange={handleChange}
+      />
     </div>
   );
 };
