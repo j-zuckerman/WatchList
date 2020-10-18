@@ -61,9 +61,6 @@ export const SideMenu = () => {
             Most Popular
           </Link>
         </li>
-
-        <li className={styles.sideMenu__item}></li>
-        <li className={styles.sideMenu__item}></li>
       </ul>
     </nav>
   );

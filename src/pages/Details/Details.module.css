@@ -1,5 +1,4 @@
 .details {
-  margin-left: 250px;
   padding: 1em;
 }
 
@@ -34,4 +33,10 @@ h3 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 1000px) {
+  .details {
+    margin-left: 250px;
+  }
 }

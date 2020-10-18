@@ -1,17 +1,13 @@
 .sideMenu {
   list-style-type: none;
   display: flex;
-  flex-direction: column;
-  width: 250px;
+
+  justify-content: space-around;
+  width: 100%;
   background-color: #151514;
   position: fixed;
-  top: 0;
-  height: 100vh;
-  margin-top: 60px;
-}
-
-.sideMenu:first-child {
-  padding-top: 2em;
+  bottom: 0;
+  z-index: 999;
 }
 
 .sideMenu__item {
@@ -28,4 +24,20 @@
 .active {
   background-color: #1f1f1e;
   color: #bc4749;
+}
+
+@media only screen and (min-width: 1000px) {
+  .sideMenu {
+    flex-direction: column;
+    width: 250px;
+    background-color: #151514;
+    justify-content: flex-start;
+    top: 0;
+    height: 100vh;
+    margin-top: 60px;
+  }
+
+  .sideMenu:first-child {
+    padding-top: 2em;
+  }
 }
