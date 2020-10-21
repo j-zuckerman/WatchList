@@ -16,6 +16,7 @@ export const Card = ({ data }) => {
         <div>
           <p className={styles.card__title}>{data.title}</p>
           <p className={styles.card__rating}>{data.vote_average}</p>
+          <button>Add to watch list</button>
         </div>
       </div>
     </Link>
