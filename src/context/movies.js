@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
-const apiKey = '9f39dd9c4f8c9231614049d653d261d6';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { apiKey } from '../util';
 const baseUrl = 'https://api.themoviedb.org/3/';
 
 export const MovieContext = createContext();
@@ -229,6 +229,7 @@ const MovieProvider = ({ children }) => {
   return (
     <MovieContext.Provider
       value={{
+        setDataToDisplay,
         dataToDisplay,
         switchToMostPopular,
         switchToNowPlaying,

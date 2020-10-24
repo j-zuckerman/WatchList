@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { MovieContext } from '../../context/movies';
+import { UserContext } from '../../providers';
 import styles from './SideMenu.module.css';
 import { Link } from 'react-router-dom';
 
 export const SideMenu = () => {
+  const user = useContext(UserContext);
+
   const {
     switchToMostPopular,
     switchToNowPlaying,
     switchToTopRated,
+    setDataToDisplay,
   } = useContext(MovieContext);
 
   //used to keep track of what link is active
@@ -26,6 +30,13 @@ export const SideMenu = () => {
   const navigateToNowPlaying = () => {
     switchToNowPlaying();
     setActiveKey('now_playing');
+  };
+
+  const navigateToWatchList = () => {
+    const { watchlist } = user;
+    setDataToDisplay(watchlist);
+
+    setActiveKey('watch_list');
   };
 
   return (
@@ -61,6 +72,19 @@ export const SideMenu = () => {
             Most Popular
           </Link>
         </li>
+
+        {user && (
+          <li
+            className={`${styles.sideMenu__item} ${
+              activeKey === 'watch_list' ? styles.active : ''
+            }`}
+            onClick={navigateToWatchList}
+          >
+            <Link className="link" to="/">
+              Watch List
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
