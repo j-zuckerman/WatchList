@@ -1,3 +1,18 @@
 .container {
-  margin-left: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.container > * {
+  margin-bottom: 0.7em;
+}
+label {
+  margin-bottom: 5px;
+}
+
+.center {
+  text-align: center;
 }

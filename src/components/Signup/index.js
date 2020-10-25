@@ -43,70 +43,59 @@ export const SignUp = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className="">Sign Up</h1>
-      <div className="">
-        <form className="">
-          <label htmlFor="displayName" className="block">
-            Display Name:
-          </label>
-          <input
-            type="text"
-            className=" "
-            name="displayName"
-            value={displayName}
-            placeholder="Enter name"
-            id="displayName"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="userEmail" className="block">
-            Email:
-          </label>
-          <input
-            type="email"
-            className=""
-            name="userEmail"
-            value={email}
-            placeholder="Enter email"
-            id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Password:
-          </label>
-          <input
-            type="password"
-            className=""
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <button
-            className=""
-            onClick={(event) => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Sign up
-          </button>
-        </form>
-        <p className="">or</p>
-        <button
+      <form className="form">
+        <label htmlFor="displayName">Display Name:</label>
+        <input
+          type="text"
+          className=" "
+          name="displayName"
+          value={displayName}
+          placeholder="Enter name"
+          id="displayName"
+          onChange={(event) => onChangeHandler(event)}
+        />
+        <label htmlFor="userEmail">Email:</label>
+        <input
+          type="email"
           className=""
-          onClick={() => {
-            signInWithGoogle();
+          name="userEmail"
+          value={email}
+          placeholder="Enter email"
+          id="userEmail"
+          onChange={(event) => onChangeHandler(event)}
+        />
+        <label htmlFor="userPassword">Password:</label>
+        <input
+          type="password"
+          className=""
+          name="userPassword"
+          value={password}
+          placeholder="Your Password"
+          id="userPassword"
+          onChange={(event) => onChangeHandler(event)}
+        />
+        <button
+          className="btn"
+          onClick={(event) => {
+            createUserWithEmailAndPasswordHandler(event, email, password);
           }}
         >
-          Sign In with Google
+          Sign up
         </button>
-        <p className="">
-          Already have an account?
-          <Link to="/" className="">
-            Sign in here
-          </Link>
-        </p>
-      </div>
+      </form>
+      <p>OR</p>
+      <button
+        className="btn_google"
+        onClick={() => {
+          signInWithGoogle();
+        }}
+      >
+        Sign In with Google
+      </button>
+      <p className="">
+        Already have an account?
+        <Link to="/login">Sign in here</Link>
+      </p>
     </div>
   );
 };

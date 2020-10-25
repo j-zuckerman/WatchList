@@ -28,10 +28,8 @@ export const SignIn = () => {
 
   return (
     <div className={styles.container}>
-      <form className="">
-        <label htmlFor="userEmail" className="block">
-          Email:
-        </label>
+      <form className="form">
+        <label htmlFor="userEmail">Email:</label>
         <input
           type="email"
           className=""
@@ -41,9 +39,7 @@ export const SignIn = () => {
           id="userEmail"
           onChange={(event) => onChangeHandler(event)}
         />
-        <label htmlFor="userPassword" className="block">
-          Password:
-        </label>
+        <label htmlFor="userPassword">Password:</label>
         <input
           type="password"
           className=""
@@ -54,17 +50,17 @@ export const SignIn = () => {
           onChange={(event) => onChangeHandler(event)}
         />
         <button
-          className=""
+          className="btn"
           onClick={(event) => {
             signInWithEmailAndPasswordHandler(event, email, password);
           }}
         >
-          Sign in
+          Login
         </button>
       </form>
-      <p className="">or</p>
+      <p>OR</p>
       <button
-        className=""
+        className="btn_google"
         onClick={() => {
           signInWithGoogle();
         }}

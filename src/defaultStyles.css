@@ -20,3 +20,32 @@ body {
   color: inherit;
   text-decoration: inherit;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.form input {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.btn {
+  text-transform: uppercase;
+  padding: 0.6rem 1.2rem;
+  color: white;
+  background-color: #083d77;
+  border: none;
+  flex-grow: unset;
+}
+
+.btn_google {
+  text-transform: uppercase;
+  padding: 0.6rem 1.2rem;
+  color: white;
+  background-color: #91273e;
+  border: none;
+  margin-top: 0.7rem;
+}
