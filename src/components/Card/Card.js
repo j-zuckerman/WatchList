@@ -4,6 +4,7 @@ import { addToUserWatchList } from '.././../firebase';
 import styles from './Card.module.css';
 import { Link } from 'react-router-dom';
 import { apiKey } from '../../util';
+import { Rating } from '../Rating';
 
 const baseImageURLPoster = 'https://image.tmdb.org/t/p/w342/';
 
@@ -33,7 +34,8 @@ export const Card = ({ data }) => {
       </Link>
       <div>
         <p className={styles.card__title}>{data.title}</p>
-        <p className={styles.card__rating}>{data.vote_average}</p>
+        <Rating score={data.vote_average}></Rating>
+
         {user && (
           <button
             className={styles.button}
