@@ -26,3 +26,10 @@
   background-color: #618b4a;
   border-radius: 1rem;
 }
+
+.button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}

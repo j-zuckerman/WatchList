@@ -23,23 +23,26 @@ export const Card = ({ data }) => {
   };
 
   return (
-    <Link className="link" to={`/movie/${data.id}`}>
-      <div className={styles.card}>
+    <div className={styles.card}>
+      <Link className="link" to={`/movie/${data.id}`}>
         <img
           className={styles.card__img}
           key={data.id}
           src={`${baseImageURLPoster}${data.poster_path}`}
         />
-        <div>
-          <p className={styles.card__title}>{data.title}</p>
-          <p className={styles.card__rating}>{data.vote_average}</p>
-          {user && (
-            <button onClick={() => addToWatchList(data.id)}>
-              Add to watch list
-            </button>
-          )}
-        </div>
+      </Link>
+      <div>
+        <p className={styles.card__title}>{data.title}</p>
+        <p className={styles.card__rating}>{data.vote_average}</p>
+        {user && (
+          <button
+            className={styles.button}
+            onClick={() => addToWatchList(data.id)}
+          >
+            Add to watch list
+          </button>
+        )}
       </div>
-    </Link>
+    </div>
   );
 };
