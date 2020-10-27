@@ -1,5 +1,6 @@
 :root {
   box-sizing: border-box;
+  font-size: 12px;
 }
 
 *,
@@ -48,4 +49,15 @@ body {
   background-color: #91273e;
   border: none;
   margin-top: 0.7rem;
+}
+
+@media only screen and (min-width: 700px) {
+  :root {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  :root {
+    font-size: 16px;
+  }
 }

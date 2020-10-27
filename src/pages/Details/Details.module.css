@@ -4,6 +4,7 @@
 
 .poster {
   border-radius: 1rem;
+  width: 300px;
 }
 
 .container {
@@ -35,8 +36,17 @@ h3 {
   flex-wrap: wrap;
 }
 
+@media only screen and (min-width: 700px) {
+  .poster {
+    width: 400px;
+  }
+}
 @media only screen and (min-width: 1000px) {
   .details {
     margin-left: 250px;
+  }
+
+  .poster {
+    width: 500px;
   }
 }

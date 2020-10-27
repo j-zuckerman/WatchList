@@ -26,6 +26,10 @@ export const SignIn = () => {
     }
   };
 
+  const handleClick = () => {
+    signInWithGoogle();
+  };
+
   return (
     <div className={styles.container}>
       <form className="form">
@@ -59,12 +63,7 @@ export const SignIn = () => {
         </button>
       </form>
       <p>OR</p>
-      <button
-        className="btn_google"
-        onClick={() => {
-          signInWithGoogle();
-        }}
-      >
+      <button className="btn_google" onClick={handleClick}>
         Sign in with Google
       </button>
     </div>

@@ -36,7 +36,7 @@ export const Details = () => {
           <p>{movieDetails.tagline}</p>
           <p>{movieDetails.vote_average}</p>
 
-          <p>{movieDetails.runtime} minutes &nbsp;/ &nbsp;</p>
+          <p>{movieDetails.runtime} minutes</p>
           <p>{movieDetails.release_date} </p>
 
           <h3>Overview</h3>
